@@ -91,3 +91,42 @@ print (f"======================")
 
 # Dicionário do jogador
 jogador = {"vida": 300, "ataque": 20, "pocoes": 2, "pontos": 0}
+
+# Lista de dicionários com os tipos de inimigo
+tipos = [
+    {"nome": "Goblin", "vida": 40, "ataque": 8, "pontos": 100},
+    {"nome": "Orc", "vida": 55, "ataque": 11, "pontos": 200},
+    {"nome": "Troll", "vida": 70, "ataque": 14, "pontos": 300},
+    {"nome": "Beast", "vida": 85, "ataque": 17, "pontos": 400},
+    {"nome": "Dragão", "vida": 100, "ataque": 20, "pontos": 500},
+]
+
+
+tipos_copias = tipos.copy()
+
+inimigos = []
+for i in range(random.randint(3, 5)):
+    inimigo_escolhidos = tipos_copias.pop(random.randint(0,len(tipos_copias)-1))
+    inimigos.append(inimigo_escolhidos)
+
+print(f"Apareceram {len(inimigos)} inimigos!")
+
+derrotados = 0
+resultado = ""
+
+while resultado == "":
+    mostrar_menu()
+    opcao = input("Opção: ")
+
+    if opcao == "1":
+        derrotados += atacar(jogador, inimigos)
+    elif opcao == "2":
+        consultar_estado(jogador, inimigos, derrotados)
+    elif opcao == "3":
+        listar_inimigos(inimigos)
+    elif opcao == "4":
+        usar_pocao(jogador)
+    elif opcao == "5":
+        resultado = "FUGA"
+    else:
+        print("Opção inválida! Escolha de 1 a 5.")
