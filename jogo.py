@@ -62,3 +62,32 @@ def consultar_estado(jogador, inimigos, derrotados):
     print(f"Inimigos derrotados: {derrotados}")
     print(f"Inimigos vivos: {len(inimigos_vivos(inimigos))}")
     print(f"Poções disponíveis: {jogador['pocoes']}")
+
+def listar_inimigos(inimigos):
+    vivos = inimigos_vivos(inimigos)
+    if len(vivos) == 0:
+        print("Não existem inimigos vivos.")
+    else:
+        for inimigo in vivos:
+            print(f"{inimigo['nome']} | Vida: {inimigo['vida']} | Ataque: {inimigo['ataque']}")
+
+
+def usar_pocao(jogador):
+    if jogador["pocoes"] == 0:
+        print("Não tens poções.")
+    elif jogador["vida"] >= 100:
+        print("A tua vida já está em 100. Não podes usar poção.")
+    else:
+        jogador["vida"] += 25
+        if jogador["vida"] > 100:
+            jogador["vida"] = 100
+        jogador["pocoes"] -= 1
+        print(f"Usaste uma poção. Vida: {jogador['vida']} | Poções restantes: {jogador['pocoes']}")
+
+#programa principal
+print (f"======================")
+print (f"  BATALHA PIRNCIPAL  ")
+print (f"======================")
+
+# Dicionário do jogador
+jogador = {"vida": 300, "ataque": 20, "pocoes": 2, "pontos": 0}
