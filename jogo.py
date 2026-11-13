@@ -130,3 +130,24 @@ while resultado == "":
         resultado = "FUGA"
     else:
         print("Opção inválida! Escolha de 1 a 5.")
+
+# Condições de fim de jogo só se ainda não fugiu
+    if resultado == "":
+        if jogador["vida"] <= 0:
+            resultado = "DERROTA"
+        elif len(inimigos_vivos(inimigos)) == 0:
+            resultado = "VITÓRIA"
+
+# mesagem no final
+print()
+print("==============================")
+if resultado == "VITÓRIA":
+    print("VITÓRIA! Derrotaste todos os inimigos!")
+elif resultado == "DERROTA":
+    print("DERROTA! A tua vida chegou a zero.")
+else:
+    print("Partida terminada por FUGA. A fuga não é uma vitória.")
+print(f"Resultado: {resultado}")
+print(f"Pontuação final: {jogador['pontos']}")
+print(f"Inimigos derrotados: {derrotados}")
+print("==============================")
