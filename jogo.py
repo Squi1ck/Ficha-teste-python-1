@@ -41,3 +41,24 @@ def atacar(jogador, inimigos):
     if alvo["vida"] < 0:
         alvo["vida"] = 0
     print(f"Causaste {dano} de dano ao {alvo['nome']}.")
+
+    if alvo["vida"] == 0:
+        jogador["pontos"] += alvo["pontos"]
+        print(f"{alvo['nome']} foi derrotado! Ganhaste {alvo['pontos']} pontos.")
+        return 1
+
+    # contra-ataque
+    dano_inimigo = random.randint(5, alvo["ataque"])
+    jogador["vida"] -= dano_inimigo
+    if jogador["vida"] < 0:
+        jogador["vida"] = 0
+    print(f"{alvo['nome']} contra-atacou e causou {dano_inimigo} de dano.")
+    return 0
+
+def consultar_estado(jogador, inimigos, derrotados):
+    print("--- Estado do jogador ---")
+    print(f"Vida: {jogador['vida']}")
+    print(f"Pontuação: {jogador['pontos']}")
+    print(f"Inimigos derrotados: {derrotados}")
+    print(f"Inimigos vivos: {len(inimigos_vivos(inimigos))}")
+    print(f"Poções disponíveis: {jogador['pocoes']}")
